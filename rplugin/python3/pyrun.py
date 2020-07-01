@@ -21,9 +21,9 @@ class PyRun(object):
         self.vim.command('term python')
 
     def get_code(self):
-        cursor_row = self.vim.current.window.cursor[0]
+        cursor_row = self.vim.current.window.cursor[0] - 1
         start_row = cursor_row
-        end_row = cursor_row + 1
+        end_row = cursor_row
         delim = self.vim.eval("g:pyrun_delimiter")
 
         start_line = self.vim.current.buffer[start_row]

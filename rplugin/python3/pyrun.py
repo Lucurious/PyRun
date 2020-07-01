@@ -13,7 +13,7 @@ class PyRun(object):
             self.vim.err_write('Please make sure to set a python window.\n')
             return
         code = self.get_code()
-        self.python_buffer.append(code+'\n')
+        self.python_buffer.append(code)
 
     @pynvim.command('SetRunWindow')
     def set_run_window(self):

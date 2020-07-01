@@ -17,7 +17,7 @@ class PyRun(object):
 
     @pynvim.command('SetRunWindow')
     def set_run_window(self):
-        self.python_buffer = self.vim.buffers[self.vim.current.buffer.number+1]
+        self.python_buffer = self.vim.buffers[self.vim.current.buffer.number-1]
         self.vim.command('term python')
 
     def get_code(self):

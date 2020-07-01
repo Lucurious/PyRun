@@ -5,7 +5,6 @@ import pynvim
 class PyRun(object):
     def __init__(self, vim):
         self.vim = vim
-        self.valid_buffer = False
         self.python_buffer = None
 
     @pynvim.command('RunCell')
@@ -22,7 +21,7 @@ class PyRun(object):
         self.vim.command('term python')
 
     def get_code(self):
-        cursor_row = self.vim.current.window.cursor.row
+        cursor_row = self.vim.current.window.cursor[0]
         start_row = cursor_row
         end_row = cursor_row + 1
         delim = self.vim.eval("g:pyrun_delimiter")
@@ -40,7 +39,3 @@ class PyRun(object):
                 end_line = self.vim.current.buffer[end_row]
 
         return self.vim.current.buffer[start_row:end_row]
-
-    @pynvim.autocmd('BufEnter', pattern='*', eval='expand("<afile>")')
-    def on_buf_enter(self, filename):
-        self.valid_buffer = filename.endswith('.py')
